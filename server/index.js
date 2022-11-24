@@ -7,7 +7,7 @@ dotenv.config();
 
 
 const app = express();
-app.use(express.json())
+app.use(express.json()) 
 
 app.post('/transactionItem', async(req, res) =>{
     const {title, amount, itemType, note} = req.body
@@ -23,7 +23,16 @@ app.post('/transactionItem', async(req, res) =>{
    
     res.send({
         message: 'data saved successfully',
-        data:   savedItem
+        data:  savedItem
+    })
+})
+
+app.get('/transactionItem', async (req, res)=>{
+    const transactionItems = await TransactionItem.find()
+
+    res.send({
+        message: 'data fetched successfully',
+        data: transactionItems
     })
 })
 
