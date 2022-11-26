@@ -4,6 +4,7 @@ const transactionItemSchema = mongoose.Schema({
     title: String,
     amount: Number,
     itemType: String,
+    category: String,
     note: String
 }, {
     timestamps: true

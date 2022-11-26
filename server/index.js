@@ -26,6 +26,11 @@ app.post('/transactionItem', async (req, res) => {
     if(!note){
         errorMessages.push('note')
     }
+
+    if(!category){
+        errorMessages.push('category ')
+    }
+
     if(errorMessages.length>0){
         return res.send({   
             status: false,
@@ -37,6 +42,7 @@ app.post('/transactionItem', async (req, res) => {
         title: title,
         amount: amount,
         itemType: itemType,
+       category: category,
         note: note
     })
 
