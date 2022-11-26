@@ -11,6 +11,27 @@ app.use(express.json())
 
 app.post('/transactionItem', async (req, res) => {
     const { title, amount, itemType, note } = req.body
+     
+    const errorMessages = []
+
+    if(!title){
+        errorMessages.push('title')
+    }
+    if(!amount){
+        errorMessages.push('amount')
+    }
+    if(!itemType){
+        errorMessages.push('itemtype')
+    }
+    if(!note){
+        errorMessages.push('note')
+    }
+    if(errorMessages.length>0){
+        return res.send({   
+            status: false,
+            message: errorMessages + " cannot empty"
+        })
+    }
 
     const newTransactionItem = new TransactionItem({
         title: title,
