@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import './Dashboard.css'
 import TransactionItemCard from '../../components/TransactionItemCard/TransactionItemCard'
 
 function Dashboard() {
-  const transactionItems = [{ title: "ABC", amount: 12, itemType: "receivable", category: "school fees", note: "Hii" }, { title: "PQR", amount: 50, itemType: "payable", category: " shopping", note: "Hello" }, { title: "XYZ", amount: 39, itemType: "receivable", category: "clg fees", note: "Hii" }, { title: "WXY", amount: 12, itemType: "receivable", category: "clg fees", note:"Hello" }]
+  const [transactionItems, setTransactionItems] = useState([])
+
+  useEffect(() => {
+     async function loadData(){
+      const  res= await axios.get('/transactionItem')
+      setTransactionItems(res.data.data)
+     }
+     loadData()
+  }, [])
   return (
     <div>
       <h1>Dashboard</h1>
@@ -13,7 +22,7 @@ function Dashboard() {
           {
             transactionItems.map((item, index) => {
               return (
-                <TransactionItemCard title={item.title}  amount={item.amount}  itemType={item.itemType} category={item.category} note={item.note}/>
+                <TransactionItemCard title={item.title} amount={item.amount} itemType={item.itemType} category={item.category} note={item.note} />
               )
             })
           }
