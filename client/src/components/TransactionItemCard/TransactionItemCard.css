@@ -1,0 +1,32 @@
+.transaction-item-card-container{
+    max-width: 600px;
+    margin: 8px;
+    padding: 8px;
+}
+
+.transaction-item-card-title{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.transaction-item-card-note{
+
+}
+
+.transaction-item-card-category{
+    display: flex;
+    justify-content: end;
+}
+
+
+.receivable{
+      background-color: #80ff80;
+      border-bottom: 5px solid #009933;
+}
+
+.payable{
+    background-color: #ffb3b3;
+    border-bottom: 5px solid #ff3333;
+}
+
