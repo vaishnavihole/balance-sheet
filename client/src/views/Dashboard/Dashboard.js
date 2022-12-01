@@ -19,6 +19,7 @@ function Dashboard() {
       <div className='row'>
         <div className='col-md-6'>
           <h2>Transaction Item</h2>
+          <div className='transaction-items-container'>
           {
             transactionItems.map((item, index) => {
               return (
@@ -26,6 +27,7 @@ function Dashboard() {
               )
             })
           }
+          </div>
         </div>
         <div className='col-md-6'>
         </div>
