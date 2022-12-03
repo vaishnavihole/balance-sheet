@@ -9,8 +9,8 @@ function AddTransaction() {
     const [note, setNote] = useState("")
     const [category, setCategory] = useState("")
 
-    function addTransactionItem() {
-        const response = axios.post("/transactionItem", {
+    async function addTransactionItem() {
+        const response = await axios.post("/transactionItem", {
             title: title,
             amount: amount,
             itemType: itemType,
@@ -24,7 +24,15 @@ function AddTransaction() {
         setNote("")
         setCategory("")
 
-        alert("Transaction item added sucessfully!!🤗");
+        if (response.data.status === true) {
+
+            alert("Transaction item added sucessfully!!🤗");
+        }
+        else {
+            
+            alert(response.data.message)
+        }
+
     }
     return (
         <div>
@@ -65,7 +73,7 @@ function AddTransaction() {
 
                     <div className='btn-add-transaction-container'>
                         <button className='btn-add-transaction'
-                        type="button" onClick={addTransactionItem}>Add Transaction</button>
+                            type="button" onClick={addTransactionItem}>Add Transaction</button>
                     </div>
                 </form>
             </div>
