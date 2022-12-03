@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import swal from 'sweetalert';
 import './AddTransaction.css'
 
 function AddTransaction() {
@@ -25,12 +26,20 @@ function AddTransaction() {
         setCategory("")
 
         if (response.data.status === true) {
-
-            alert("Transaction item added sucessfully!!🤗");
+            swal({
+                title: 'success!',
+                text: "Transaction add successfully🤗...",
+                icon: 'success'
+            })
         }
         else {
-            
-            alert(response.data.message)
+            swal({
+                title: 'error!',
+                text: response.data.message,
+                icon: 'error'
+            })
+
+
         }
 
     }
