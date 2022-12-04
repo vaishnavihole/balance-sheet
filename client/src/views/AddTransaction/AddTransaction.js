@@ -6,7 +6,7 @@ import './AddTransaction.css'
 function AddTransaction() {
     const [title, setTitle] = useState("")
     const [amount, setAmount] = useState("")
-    const [itemType, setItemType] = useState("")
+    const [itemType, setItemType] = useState("receivable")
     const [note, setNote] = useState("")
     const [category, setCategory] = useState("")
 
@@ -38,10 +38,7 @@ function AddTransaction() {
                 text: response.data.message,
                 icon: 'error'
             })
-
-
         }
-
     }
     return (
         <div>
@@ -62,10 +59,9 @@ function AddTransaction() {
                             onChange={(e) => { setAmount(e.target.value) }} required />
                     </div>
 
-                    <div>
-                        <input className='form-input'
-                            type='text' placeholder='Enter ItemType' value={itemType}
-                            onChange={(e) => { setItemType(e.target.value) }} required />
+                    <div className='rp-radio-container'>
+                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked="true"/>Receivable</span>
+                        <span><input  className='rp-radio'type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} />Payable</span>
                     </div>
 
                     <div>
