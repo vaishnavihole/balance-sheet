@@ -8,7 +8,7 @@ function AddTransaction() {
     const [amount, setAmount] = useState("")
     const [itemType, setItemType] = useState("receivable")
     const [note, setNote] = useState("")
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState("other")
 
     async function addTransactionItem() {
         const response = await axios.post("/transactionItem", {
@@ -60,8 +60,8 @@ function AddTransaction() {
                     </div>
 
                     <div className='rp-radio-container'>
-                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked="true"/>Receivable</span>
-                        <span><input  className='rp-radio'type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} />Payable</span>
+                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked="true" />Receivable</span>
+                        <span><input className='rp-radio' type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} />Payable</span>
                     </div>
 
                     <div>
@@ -71,9 +71,15 @@ function AddTransaction() {
                     </div>
 
                     <div>
-                        <input className='form-input'
-                            type='text' placeholder='Category' value={category}
-                            onChange={(e) => { setCategory(e.target.value) }} required />
+                        <select className='form-input' value={category} onChange={(e) => { setCategory(e.target.value) }} >
+                            <option value='grocery'>🛒Grocery</option>
+                            <option value='shopping'>🛍️ Shopping</option>
+                            <option value='courses'>📚Courses</option>
+                            <option value='food'>🍕Food</option>
+                            <option value='travling'>🧳Travling</option>
+                            <option value='other'>💳Other</option>
+                            <option value='salary'>💵Salary</option>
+                        </select>
                     </div>
 
                     <div className='btn-add-transaction-container'>
