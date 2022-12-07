@@ -19,6 +19,7 @@ function AddTransaction() {
             category: category
         })
         console.log(response.data)
+        
         setTitle("")
         setAmount("")
         setItemType("")

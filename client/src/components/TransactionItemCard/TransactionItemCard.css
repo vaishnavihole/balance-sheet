@@ -1,5 +1,5 @@
 .transaction-item-card-container{
-    max-width: 600px;
+    width: 100%;
     margin: 8px;
     padding: 8px;
 }
@@ -10,9 +10,6 @@
     font-weight: bold;
 }
 
-.transaction-item-card-note{
-
-}
 
 .transaction-item-card-category{
     display: flex;
