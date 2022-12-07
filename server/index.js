@@ -1,7 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import path from 'path';
+const __dirname = path.resolve();
 import TransactionItem from './models/TransactionItem.js'
+
 
 dotenv.config();
 
@@ -10,29 +13,29 @@ const app = express();
 app.use(express.json())
 
 app.post('/transactionItem', async (req, res) => {
-    const { title, amount, itemType, note } = req.body
-     
+    const { title, amount, itemType, note, category } = req.body
+
     const errorMessages = []
 
-    if(!title){
+    if (!title) {
         errorMessages.push('title')
     }
-    if(!amount){
+    if (!amount) {
         errorMessages.push('amount')
     }
-    if(!itemType){
+    if (!itemType) {
         errorMessages.push('itemtype')
     }
-    if(!note){
+    if (!note) {
         errorMessages.push('note')
     }
 
-    if(!category){
+    if (!category) {
         errorMessages.push('category ')
     }
 
-    if(errorMessages.length>0){
-        return res.send({   
+    if (errorMessages.length > 0) {
+        return res.send({
             status: false,
             message: errorMessages + " cannot empty"
         })
@@ -42,13 +45,14 @@ app.post('/transactionItem', async (req, res) => {
         title: title,
         amount: amount,
         itemType: itemType,
-       category: category,
+        category: category,
         note: note
     })
 
     const savedItem = await newTransactionItem.save()
 
     res.send({
+        status: true,
         message: 'data saved successfully',
         data: savedItem
     })
@@ -66,14 +70,14 @@ app.get('/receivables', async (req, res) => {
     const receivables = await TransactionItem.find({
         itemType: 'receivable'
     })
-    
+
     res.send({
         message: 'receivable item fetched successfully',
         data: receivables
     })
 })
 
-app.get('/payables', async (req, res) =>{
+app.get('/payables', async (req, res) => {
     const payables = await TransactionItem.find({
         itemType: 'payable'
     })
@@ -84,10 +88,18 @@ app.get('/payables', async (req, res) =>{
     })
 })
 
-    
+
 mongoose.connect(process.env.MONGO_DB_URL, () => {
     console.log("Connected to mongo DB📦")
 })
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+    });
+}
 
 app.listen(process.env.PORT || 5000, () => {
     console.log('server started running on port 5000📦')
