@@ -89,6 +89,32 @@ app.get('/payables', async (req, res) => {
 })
 
 
+app.get('/calculations', async (req, res) => {
+    const rps = await TransactionItem.find({})
+
+    let totalPayable = 0
+    let totalReceivable = 0
+    let totalBalance = 0
+
+    rps.forEach((transactionItem) => {
+        if (transactionItem.itemType === "receivable") {
+            totalReceivable = totalReceivable + transactionItem.amount
+        }
+        else {
+            totalPayable = totalPayable + transactionItem.amount
+        }
+    })
+
+    totalBalance = totalReceivable-totalPayable
+
+    res.send({
+        message: 'calcultion fetched successfully',
+        totalPayable: totalPayable,
+        totalReceivable: totalReceivable,
+        totalBalance: totalBalance
+    })
+})
+
 mongoose.connect(process.env.MONGO_DB_URL, () => {
     console.log("Connected to mongo DB📦")
 })
@@ -104,3 +130,5 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(process.env.PORT || 5000, () => {
     console.log('server started running on port 5000📦')
 })
+
+
