@@ -17,6 +17,17 @@ function Dashboard() {
      }
      loadData()
   }, [])
+
+  useEffect(() => {
+    async function loadData(){
+     const  res= await axios.get('/calculations')
+     setTotalReceivable(res.data.totalReceivable)
+     setTotalPayable(res.data.totalPayable)
+     setTotalBalance(res.data.totalBalance)
+    }
+    loadData()
+ }, [])
+
   return (
     <div>
       <Navbar />
