@@ -6,6 +6,9 @@ import Navbar from '../../components/Navbar/Navbar'
 
 function Dashboard() {
   const [transactionItems, setTransactionItems] = useState([])
+  const [totalReceivable , setTotalReceivable] = useState(0)
+  const [totalPayable , setTotalPayable] = useState(0)
+  const [totalBalance, setTotalBalance] = useState(0)
 
   useEffect(() => {
      async function loadData(){
@@ -33,7 +36,17 @@ function Dashboard() {
           </div>
         </div>
         <div className='col-md-6'>
+          <div className='calculations-container'>
+            <div className='calculation-card text-receivable'>₹ {totalReceivable}</div>
+            <div className='calculation-card text-payable '>₹ {totalPayable}</div>
+          </div>
+       
+          <div className='total-calculations'>
+               <p className='total-calculation-title'>Total Balance</p>
+                ₹ {totalBalance}
+          </div>
         </div>
+        
       </div>
     </div>
   )

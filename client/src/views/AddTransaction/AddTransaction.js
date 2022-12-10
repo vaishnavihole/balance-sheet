@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import swal from 'sweetalert';
 import './AddTransaction.css'
+import Navbar from '../../components/Navbar/Navbar'
+
 
 function AddTransaction() {
     const [title, setTitle] = useState("")
@@ -11,7 +13,7 @@ function AddTransaction() {
     const [category, setCategory] = useState("other")
 
     async function addTransactionItem() {
-        const response = await axios.post("/transactionItem", {
+         const response = await axios.post("/transactionItem", {
             title: title,
             amount: amount,
             itemType: itemType,
@@ -43,6 +45,7 @@ function AddTransaction() {
     }
     return (
         <div>
+            <Navbar />
             <div className='heading-container'>
                 <h1 className='heading'>💰 Add Transaction</h1>
             </div>
@@ -61,8 +64,8 @@ function AddTransaction() {
                     </div>
 
                     <div className='rp-radio-container'>
-                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked="true" />Receivable</span>
-                        <span><input className='rp-radio' type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} />Payable</span>
+                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked={itemType=== "receivable"} />Receivable</span>
+                        <span><input className='rp-radio' type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked={itemType=== "payable"} />Payable</span>
                     </div>
 
                     <div>
