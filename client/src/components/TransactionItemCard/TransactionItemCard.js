@@ -5,14 +5,12 @@ function TransactionItemCard({ title, amount, itemType, category, note }) {
   return (
     <div className={`transaction-item-card-container  ${itemType}`} >
       <div className='transaction-item-card-title'>
-       <span> {title} </span>
-       <span> {amount} </span>
+        <span> {title} </span>
+        <span> {amount} </span>
       </div>
-      <div className='transaction-item-card-category'>
-      {category}
-      </div>
-      <div className='transaction-item-card-note'>
-       {note}   
+      <div className='transaction-item-card-details'>
+        <span>{note}</span>
+        <span className='category-badge'>{category}</span>
       </div>
     </div>
   )

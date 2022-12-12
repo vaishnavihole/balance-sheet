@@ -34,8 +34,8 @@ function Dashboard() {
       <div className='heading-container'>
         <h1 className='heading'>Dashboard</h1>
       </div>
-      <div className='row'>
-        <div className='col-md-6'>
+       <div className='row'>
+        <div className='col-md-7'>
           <div className='transaction-items-container'>
           {
             transactionItems.map((item, index) => {
@@ -46,7 +46,7 @@ function Dashboard() {
           }
           </div>
         </div>
-        <div className='col-md-6'>
+        <div className='col-md-5'>
           <div className='calculations-container'>
             <div className='calculation-card text-receivable'>₹ {totalReceivable}</div>
             <div className='calculation-card text-payable '>₹ {totalPayable}</div>

@@ -1,29 +1,43 @@
-.transaction-item-card-container{
-    width: 100%;
+.transaction-item-card-container {
+    width: 95%;
     margin: 8px;
     padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px  8px 0px 0px;
 }
 
-.transaction-item-card-title{
+.transaction-item-card-title {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
 }
 
 
-.transaction-item-card-category{
-    display: flex;
-    justify-content: end;
+.receivable {
+    background-color: #80ff80;
+    border-bottom: 5px solid #009933;
 }
 
-
-.receivable{
-      background-color: #80ff80;
-      border-bottom: 5px solid #009933;
-}
-
-.payable{
+.payable {
     background-color: #ffb3b3;
     border-bottom: 5px solid #ff3333;
 }
 
+.transaction-item-card-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-badge{
+    display: block;
+    background-color: white;
+    border-radius: 30px;
+    padding: 3px;
+    margin: 3px;
+    min-width: 100px;
+    text-align: center;
+    border: 1px solid gray;
+    padding-left: 10px;
+    padding-right: 10px;
+}
