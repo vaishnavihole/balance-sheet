@@ -12,6 +12,9 @@ function TransactionItemCard({ title, amount, itemType, category, note }) {
         <span>{note}</span>
         <span className='category-badge'>{category}</span>
       </div>
+        <span className='delete-button'>
+        🗑️
+        </span>
     </div>
   )
 }
