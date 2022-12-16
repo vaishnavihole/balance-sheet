@@ -1,7 +1,17 @@
 import React from 'react'
 import './TransactionItemCard.css'
+import axios from 'axios';
 
-function TransactionItemCard({ title, amount, itemType, category, note }) {
+function TransactionItemCard({ title, amount, itemType, category, note, itemId }) {
+
+  async function deleteTransactionItem() {
+    const response = await axios.post('/deleteTransactionItem', {
+      itemId: itemId
+    })
+    window.location.reload()
+  }
+
+
   return (
     <div className={`transaction-item-card-container  ${itemType}`} >
       <div className='transaction-item-card-title'>
@@ -12,9 +22,9 @@ function TransactionItemCard({ title, amount, itemType, category, note }) {
         <span>{note}</span>
         <span className='category-badge'>{category}</span>
       </div>
-        <span className='delete-button'>
+      <span className='delete-button' onClick={deleteTransactionItem}>
         🗑️
-        </span>
+      </span>
     </div>
   )
 }

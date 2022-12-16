@@ -27,7 +27,7 @@ function AllTransactions() {
         {
           transactionItems.map((item, index) => {
             return (
-              <TransactionItemCard title={item.title} amount={item.amount} itemType={item.itemType} category={item.category} note={item.note} />
+              <TransactionItemCard title={item.title} amount={item.amount} itemType={item.itemType} category={item.category} note={item.note}   itemId={item._id} />
             )
           })
         }
