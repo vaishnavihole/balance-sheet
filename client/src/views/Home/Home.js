@@ -1,7 +1,7 @@
 import React from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
-import ImgHeader from './balance-sheet-header-img.jpeg'
+import ImgHeader from './header-img.png'
 
 function Home() {
   return (
@@ -9,9 +9,34 @@ function Home() {
       <Navbar />
       <div className='row'>
         <div className='col-md-6'>
-          <img className='header-image' src={ImgHeader} />
+          <div className='header-img-container'><img className='header-image' src={ImgHeader} /></div>
         </div>
-        <div className='col-md-6'></div>
+        <div className='col-md-6'>
+          <div className='features-container'>
+
+            <div className='features-card'>
+              <div className='feature-card-icon'>📔</div>
+              <div className='feature-card-title'>Record all transaction at one place</div>
+            </div>
+
+            <div className='features-card'>
+              <div className='feature-card-icon'>✅</div>
+              <div className='feature-card-title'>Track income and expenses easily</div>
+            </div>
+
+
+            <div className='features-card'>
+              <div className='feature-card-icon'>🛍️</div>
+              <div className='feature-card-title'>Transaction category management</div>
+            </div>
+
+
+            <div className='features-card'>
+              <div className='feature-card-icon'>💰</div>
+              <div className='feature-card-title'>Smooth represenation of cashflow</div>
+            </div>
+          </div>
+        </div>
         
       </div>
       </div>
