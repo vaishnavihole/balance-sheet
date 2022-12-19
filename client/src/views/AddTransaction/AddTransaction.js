@@ -3,6 +3,8 @@ import axios from 'axios'
 import swal from 'sweetalert';
 import './AddTransaction.css'
 import Navbar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer/Footer'
+
 
 
 function AddTransaction() {
@@ -92,6 +94,7 @@ function AddTransaction() {
                     </div>
                 </form>
             </div>
+            <Footer />
         </div>
     )
 }

@@ -3,6 +3,7 @@ import axios from 'axios'
 import './AllTransactions.css'
 import TransactionItemCard from '../../components/TransactionItemCard/TransactionItemCard'
 import Navbar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer/Footer'
 
 
 function AllTransactions() {
@@ -33,6 +34,8 @@ function AllTransactions() {
         }
         
       </div>
+
+    <Footer />
     </div>
 
   )

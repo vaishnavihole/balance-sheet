@@ -2,6 +2,7 @@ import React from 'react'
 import './Home.css'
 import Navbar from '../../components/Navbar/Navbar'
 import ImgHeader from './header-img.png'
+import Footer from '../../components/Footer/Footer'
 
 function Home() {
   return (
@@ -39,6 +40,7 @@ function Home() {
         </div>
         
       </div>
+      <Footer />
       </div>
   )
 }

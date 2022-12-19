@@ -3,6 +3,7 @@ import axios from 'axios'
 import './Dashboard.css'
 import TransactionItemCard from '../../components/TransactionItemCard/TransactionItemCard'
 import Navbar from '../../components/Navbar/Navbar'
+import Footer from '../../components/Footer/Footer'
 
 function Dashboard() {
   const [transactionItems, setTransactionItems] = useState([])
@@ -59,6 +60,7 @@ function Dashboard() {
         </div>
         
       </div>
+      <Footer />
     </div>
   )
 }
