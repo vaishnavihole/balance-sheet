@@ -105,13 +105,25 @@ app.get('/calculations', async (req, res) => {
         }
     })
 
-    totalBalance = totalReceivable-totalPayable
+    totalBalance = totalReceivable - totalPayable
 
     res.send({
         message: 'calcultion fetched successfully',
         totalPayable: totalPayable,
         totalReceivable: totalReceivable,
         totalBalance: totalBalance
+    })
+})
+
+
+app.post('/deleteTransactionItem', async (req, res) => {
+    const { itemId } = req.body
+    const transactionItems = await TransactionItem.deleteOne({
+        _id: itemId
+    })
+    res.send({
+        message: 'item deleted successfully',
+        data: null
     })
 })
 
