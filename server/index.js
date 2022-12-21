@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import path from 'path';
 const __dirname = path.resolve();
 import TransactionItem from './models/TransactionItem.js'
+import User from './models/User.js'
 
 
 dotenv.config();
@@ -125,6 +126,22 @@ app.post('/deleteTransactionItem', async (req, res) => {
         message: 'item deleted successfully',
         data: null
     })
+})
+
+app.post('/signup', async (req, res) => {
+    const {name,  email,  password} = req.body  
+    const user = new User({
+        name: name,
+        email: email,
+        password: password     
+    })
+    const savedUser = await user.save()
+    res.json({
+        success: true,
+        data: savedUser,
+        message: 'signup successfully'
+    })
+    
 })
 
 mongoose.connect(process.env.MONGO_DB_URL, () => {
