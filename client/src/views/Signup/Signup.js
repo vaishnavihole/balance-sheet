@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './Signup.css'
 import Footer from '../../components/Footer/Footer';
+import swal from 'sweetalert'
 import IMGlock from "./lock.png";
 import axios from 'axios'
 
@@ -16,14 +17,29 @@ function Signup() {
         email: email,
         password: password
     })
+    if (response.data.success === true) {
+        swal({
+            title: 'success!',
+            text: "Signup successfully..🤗",
+            icon: 'success'
+        })
+        window.location.href="/login"
+    }
+    else {
+        swal({
+            title: 'error!',
+            text: response.data.message,
+            icon: 'error'
+        })
+    }
+
     console.log(response.data)
 
     setFullName("")
     setEmail("")
     setPassword("")
-    
-
   }
+
 
     return (
         <div>
@@ -47,7 +63,7 @@ function Signup() {
                         onChange={ (e) =>{setPassword(e.target.value)} } required/>
                     </div>
 
-                    <button className='signup-button'
+                    <button className='login-button'
                             type="button" onClick={userSignup}>Signup</button>
 
                 </form>
