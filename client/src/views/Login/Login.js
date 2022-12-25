@@ -4,11 +4,12 @@ import Footer from '../../components/Footer/Footer'
 import swal from 'sweetalert'
 import IMGlock from '../Signup/lock.png';
 import axios from 'axios'
+import currentUser from '../../Util/User'
+
 
 function Login() {
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
-  
 
   async  function userLogin(){
     const  response = await axios.post('/login',{
@@ -23,6 +24,7 @@ function Login() {
           text: "Login Successfully...🤗",
           icon: 'success'
       })
+      window.location.href="/dashboard"
   }
   else {
       swal({

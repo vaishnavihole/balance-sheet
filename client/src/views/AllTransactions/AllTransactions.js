@@ -4,6 +4,8 @@ import './AllTransactions.css'
 import TransactionItemCard from '../../components/TransactionItemCard/TransactionItemCard'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
+import currentUser from '../../Util/User'
+import swal from 'sweetalert'
 
 
 function AllTransactions() {
@@ -15,6 +17,15 @@ function AllTransactions() {
       setTransactionItems(res.data.data)
     }
     loadData()
+    if (currentUser()) { }
+    else {
+      swal({
+        title: 'error!',
+        text: 'plzz login to see this page',
+        icon: 'error'
+      })
+      window.location.href = "/login"
+    }
   }, [])
 
   return (
@@ -28,14 +39,14 @@ function AllTransactions() {
         {
           transactionItems.map((item, index) => {
             return (
-              <TransactionItemCard title={item.title} amount={item.amount} itemType={item.itemType} category={item.category} note={item.note}   itemId={item._id} />
+              <TransactionItemCard title={item.title} amount={item.amount} itemType={item.itemType} category={item.category} note={item.note} itemId={item._id} />
             )
           })
         }
-        
+
       </div>
 
-    <Footer />
+      <Footer />
     </div>
 
   )

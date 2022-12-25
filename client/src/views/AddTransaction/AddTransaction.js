@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import swal from 'sweetalert';
 import './AddTransaction.css'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
+import currentUser from '../../Util/User'
+
 
 
 
@@ -14,8 +16,20 @@ function AddTransaction() {
     const [note, setNote] = useState("")
     const [category, setCategory] = useState("other")
 
+    useEffect(() => {
+        if (currentUser()) { }
+        else {
+            swal({
+                title: 'error!',
+                text: 'plzz login to see this page',
+                icon: 'error'
+            })
+            window.location.href = "/login"
+        }
+    }, [])
+
     async function addTransactionItem() {
-         const response = await axios.post("/transactionItem", {
+        const response = await axios.post("/transactionItem", {
             title: title,
             amount: amount,
             itemType: itemType,
@@ -23,7 +37,7 @@ function AddTransaction() {
             category: category
         })
         console.log(response.data)
-        
+
         setTitle("")
         setAmount("")
         setItemType("")
@@ -66,8 +80,8 @@ function AddTransaction() {
                     </div>
 
                     <div className='rp-radio-container'>
-                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked={itemType=== "receivable"} />Receivable</span>
-                        <span><input className='rp-radio' type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked={itemType=== "payable"} />Payable</span>
+                        <span ><input className='rp-radio' type='radio' value='receivable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked={itemType === "receivable"} />Receivable</span>
+                        <span><input className='rp-radio' type='radio' value='payable' name='rp' onClick={(e) => { setItemType(e.target.value) }} checked={itemType === "payable"} />Payable</span>
                     </div>
 
                     <div>
