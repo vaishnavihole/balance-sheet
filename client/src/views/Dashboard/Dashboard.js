@@ -16,7 +16,10 @@ function Dashboard() {
   useEffect(() => {
     async function loadData() {
       const res = await axios.get('/transactionItem')
-      setTransactionItems(res.data.data)
+      const rps = res.data.data
+      rps.sort((a, b) => a.createdAt > b.createdAt ? -1 : 1)
+      setTransactionItems(rps.slice(0,10))
+  
     }
     loadData()
     if (currentUser()) { }
